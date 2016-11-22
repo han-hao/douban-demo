@@ -2,12 +2,12 @@
 <!-- 当message有值得时候才显示，message:请求失败的信息 -->
 <h2 ng-if="message">{{message}}</h2>
 <div class="list-group">
-  <a ng-repeat="item in subjects" href="#" class="list-group-item">
+  <a ng-repeat="item in subjects | limitTo:10:10" href="#" class="list-group-item">
     <span class="badge">{{item.rating.average}}</span>
     <div class="media">
       <div class="media-left">
         <!-- 这儿要用ng-src绑定，不然报错 -->
-        <img ng-src="{{item.images.small}}" alt="item.title">      
+        <img ng-src="{{item.images.small}}" alt="item.title" height="110">      
       </div>
       <div class="media-body">
         <h3 class="media-heading">{{item.title}}</h3>
@@ -16,14 +16,17 @@
         <!-- <p>导演：<span>{{item.directors[0].name}}</span></p> -->
         <p>导演：
           <span ng-repeat="d in item.directors">
-            {{d.name}}
+            <!-- 或者这样，用三目，但是要加括号哦,不然会先被加进去 -->
+            {{d.name + ($last?'':'、')}}
+            <!-- {{d.name}} -->
             <!-- 最后一个点要去掉、号 -->
-            <i ng-if="!$last">、</i>
+            <!-- <i ng-if="!$last">、</i> -->
           </span>
         </p>
         <!-- toString，把数组变成字符串，逗号分割 -->
         <!-- 逗号不合适，就把数组转成字符串，用、分隔 。字符串才能join哦。-->
         <p>类型：<span>{{item.genres.join('、')}}</span></p>
+        <p>主演：<span ng-repeat="cast in item.casts">{{cast.name}}{{$last?'':'、'}}</span></p>
       </div>
     </div>
   </a>

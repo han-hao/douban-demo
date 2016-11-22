@@ -30,7 +30,7 @@
         $scope.subjects=response.data.subjects;       
       }else{
         // 成功的回调也会写错，错误的回调也会写错，所以两个地方都要写
-        $scope.message='获取数据错误';
+        $scope.message='获取数据错误:'+response.statusText;
       };
       console.log(response)
 
