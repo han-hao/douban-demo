@@ -1,0 +1,14 @@
+
+<!-- 巨幕 -->
+<div class="jumbotron">
+  <h2>{{movie.title}}</h2>
+  <img ng-src="{{movie.images.large}}" alt="{{movie.title}}" />
+  <p>{{movie.summary}}</p>
+</div>
+<div class="mask" ng-show="loading">
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>

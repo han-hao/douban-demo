@@ -1,8 +1,9 @@
-<h1 class="page-header">正在热映</h1>
+<h1 class="page-header">{{dataTitle}}</h1>
 <!-- 当message有值得时候才显示，message:请求失败的信息 -->
 <h2 ng-if="message">{{message}}</h2>
 <div class="list-group">
-  <a ng-repeat="item in subjects | limitTo:10:10" href="#" class="list-group-item">
+  <!-- 在这儿加上锚点地址 -->
+  <a ng-repeat="item in subjects " href="#/detail/{{item.id}}" class="list-group-item">
     <span class="badge">{{item.rating.average}}</span>
     <div class="media">
       <div class="media-left">
@@ -30,4 +31,21 @@
       </div>
     </div>
   </a>
+</div>
+<div class="mask" ng-show="loading">
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+<div ng-show="!loading">
+  <p >共：{{total}}条记录,第{{page}}/{{totalPages}}页</p>
+<nav>
+  <ul class="pager">
+    <!-- 页面小于0的时候禁止点 -->
+    <li ng-class="{disabled:page<=1}"><a ng-click="goPage(page - 1)">上一页</a></li>
+    <li ng-class="{disabled:page>=totalPages}"><a ng-click="goPage(page + 1)">下一页</a></li>
+  </ul>
+</nav>
 </div>
