@@ -20,7 +20,7 @@
   // 为模块定义一些常量，可以直接在控制器里注入appConfig就行
   module.constant('AppConfig',{
     pageSize:10,
-    apiAddress:'http://api.douban.com/v2/movie/'
+    apiAddress:'//api.douban.com/v2/movie/'
   })
 
 
